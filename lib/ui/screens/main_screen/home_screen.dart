@@ -99,9 +99,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Row(
                                 children: [
-                                  const Icon(
-                                    Icons.location_on_sharp,
-                                    color: Colors.red,
+                                  InkWell(
+                                    onTap: () {
+                                      context
+                                          .read<HomeBloc>()
+                                          .add(const HomeEvent.goHomeLocation());
+                                    },
+                                    child: const Icon(
+                                      Icons.my_location_outlined,
+                                      color: Colors.red,
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 5,
@@ -170,17 +177,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.white,
                                     ),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.white,
                                     ),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.orange,
                                       width: 3,

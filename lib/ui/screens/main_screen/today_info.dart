@@ -11,6 +11,7 @@ import 'package:weather/ui/app.dart';
 import 'package:weather/ui/functions.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class TodayInformation extends StatefulWidget {
   TodayInformation(this.mainWeather);
@@ -24,7 +25,6 @@ class TodayInformation extends StatefulWidget {
 class _TodayInformationState extends State<TodayInformation> {
   String? icon;
 
-
   Timer? timer;
 
   @override
@@ -33,7 +33,9 @@ class _TodayInformationState extends State<TodayInformation> {
 
     super.initState();
   }
+
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,15 +71,16 @@ class _TodayInformationState extends State<TodayInformation> {
         const SizedBox(
           height: 30,
         ),
-       Column(
-            children: [
-              FlipCard(
-                key: cardKey,
-                direction: FlipDirection.VERTICAL,
-                flipOnTouch:true ,
-                front: Row(
-                  children: [
-                    Row(
+        Column(
+          children: [
+            FlipCard(
+              key: cardKey,
+              direction: FlipDirection.VERTICAL,
+              flipOnTouch: true,
+              front: Row(
+                children: [
+                  Expanded(
+                    child: Row(
                       children: [
                         Lottie.asset(
                           'assets/lottie/maxTemp.json',
@@ -105,7 +108,9 @@ class _TodayInformationState extends State<TodayInformation> {
                         ),
                       ],
                     ),
-                    Row(
+                  ),
+                  Expanded(
+                    child: Row(
                       children: [
                         Lottie.asset('assets/lottie/tempMin.json',
                             width: 75, height: 75),
@@ -129,78 +134,151 @@ class _TodayInformationState extends State<TodayInformation> {
                           ],
                         ),
                       ],
-                    )
-                  ],
-                ),
-                back: Column(
-                  children: [
-                    Text('Погода по часам',style: AppTextStyle.textStyle14w400,),
-
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Divider(
-                color: Colors.grey,
-              ),
-              Column(
+              back: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Закат',
-                            style: AppTextStyle.textStyle16w400.copyWith(
-                              color: Colors.grey.withOpacity(
-                                0.7,
+                      Expanded(
+                        flex: 7,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.water_drop,
+                              color: Colors.lightBlueAccent,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              ' ${widget.mainWeather.main?.humidity ?? 0}%',
+                              style: AppTextStyle.textStyle16w400.copyWith(
+                                color: Colors.grey.shade400,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            formatSunsetTime(widget.mainWeather.sys?.sunset ?? 0),
-                            style: AppTextStyle.textStyle16w600,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Lottie.asset(
-                        'assets/lottie/dayNight.json',
-                        reverse: true,
-                        width: 150,
-                        height: 135,
+                      Expanded(
+                        flex: 10,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              WeatherIcons.strong_wind,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              ' ${widget.mainWeather.wind?.speed ?? 0} м/c',
+                              style: AppTextStyle.textStyle16w400.copyWith(
+                                color: Colors.grey.shade400,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            'Рассвет',
-                            style: AppTextStyle.textStyle16w400.copyWith( color: Colors.grey.withOpacity(
-                              0.7,
-                            ),),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            formatSunsetTime(
-                                widget.mainWeather.sys?.sunrise ?? 0),
-                            style: AppTextStyle.textStyle16w600,
-                          ),
-                        ],
+                      Expanded(
+                        flex: 13,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 95,
+                              child: Text(
+                                'Ощущается как',
+                                textAlign: TextAlign.center,
+                                style: AppTextStyle.textStyle16w400.copyWith(
+                                  color: Colors.grey.withOpacity(
+                                    0.7,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              ' ${widget.mainWeather.main?.feelsLike?.toInt() ?? 0} ℃',
+                              style: AppTextStyle.textStyle16w400.copyWith(
+                                color: Colors.grey.shade400,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
-            ],
-          ),
-
-
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(
+              color: Colors.grey,
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Закат',
+                          style: AppTextStyle.textStyle16w400.copyWith(
+                            color: Colors.grey.withOpacity(
+                              0.7,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          formatSunsetTime(widget.mainWeather.sys?.sunset ?? 0),
+                          style: AppTextStyle.textStyle16w600,
+                        ),
+                      ],
+                    ),
+                    Lottie.asset(
+                      'assets/lottie/dayNight.json',
+                      reverse: true,
+                      width: 150,
+                      height: 135,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Рассвет',
+                          style: AppTextStyle.textStyle16w400.copyWith(
+                            color: Colors.grey.withOpacity(
+                              0.7,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          formatSunsetTime(
+                              widget.mainWeather.sys?.sunrise ?? 0),
+                          style: AppTextStyle.textStyle16w600,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }

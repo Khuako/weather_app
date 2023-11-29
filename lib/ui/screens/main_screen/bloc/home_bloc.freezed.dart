@@ -20,18 +20,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String query) searchCity,
+    required TResult Function() goHomeLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String query)? searchCity,
+    TResult? Function()? goHomeLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String query)? searchCity,
+    TResult Function()? goHomeLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialEvent value) initial,
     required TResult Function(_SearchCityEvent value) searchCity,
+    required TResult Function(_GoHomeLocationEvent value) goHomeLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialEvent value)? initial,
     TResult? Function(_SearchCityEvent value)? searchCity,
+    TResult? Function(_GoHomeLocationEvent value)? goHomeLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialEvent value)? initial,
     TResult Function(_SearchCityEvent value)? searchCity,
+    TResult Function(_GoHomeLocationEvent value)? goHomeLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String query) searchCity,
+    required TResult Function() goHomeLocation,
   }) {
     return initial();
   }
@@ -122,6 +129,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String query)? searchCity,
+    TResult? Function()? goHomeLocation,
   }) {
     return initial?.call();
   }
@@ -131,6 +139,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String query)? searchCity,
+    TResult Function()? goHomeLocation,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -144,6 +153,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialEvent value) initial,
     required TResult Function(_SearchCityEvent value) searchCity,
+    required TResult Function(_GoHomeLocationEvent value) goHomeLocation,
   }) {
     return initial(this);
   }
@@ -153,6 +163,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialEvent value)? initial,
     TResult? Function(_SearchCityEvent value)? searchCity,
+    TResult? Function(_GoHomeLocationEvent value)? goHomeLocation,
   }) {
     return initial?.call(this);
   }
@@ -162,6 +173,7 @@ class _$InitialEventImpl implements _InitialEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialEvent value)? initial,
     TResult Function(_SearchCityEvent value)? searchCity,
+    TResult Function(_GoHomeLocationEvent value)? goHomeLocation,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -242,6 +254,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String query) searchCity,
+    required TResult Function() goHomeLocation,
   }) {
     return searchCity(query);
   }
@@ -251,6 +264,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String query)? searchCity,
+    TResult? Function()? goHomeLocation,
   }) {
     return searchCity?.call(query);
   }
@@ -260,6 +274,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String query)? searchCity,
+    TResult Function()? goHomeLocation,
     required TResult orElse(),
   }) {
     if (searchCity != null) {
@@ -273,6 +288,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_InitialEvent value) initial,
     required TResult Function(_SearchCityEvent value) searchCity,
+    required TResult Function(_GoHomeLocationEvent value) goHomeLocation,
   }) {
     return searchCity(this);
   }
@@ -282,6 +298,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InitialEvent value)? initial,
     TResult? Function(_SearchCityEvent value)? searchCity,
+    TResult? Function(_GoHomeLocationEvent value)? goHomeLocation,
   }) {
     return searchCity?.call(this);
   }
@@ -291,6 +308,7 @@ class _$SearchCityEventImpl implements _SearchCityEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InitialEvent value)? initial,
     TResult Function(_SearchCityEvent value)? searchCity,
+    TResult Function(_GoHomeLocationEvent value)? goHomeLocation,
     required TResult orElse(),
   }) {
     if (searchCity != null) {
@@ -307,6 +325,115 @@ abstract class _SearchCityEvent implements HomeEvent {
   @JsonKey(ignore: true)
   _$$SearchCityEventImplCopyWith<_$SearchCityEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GoHomeLocationEventImplCopyWith<$Res> {
+  factory _$$GoHomeLocationEventImplCopyWith(_$GoHomeLocationEventImpl value,
+          $Res Function(_$GoHomeLocationEventImpl) then) =
+      __$$GoHomeLocationEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoHomeLocationEventImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GoHomeLocationEventImpl>
+    implements _$$GoHomeLocationEventImplCopyWith<$Res> {
+  __$$GoHomeLocationEventImplCopyWithImpl(_$GoHomeLocationEventImpl _value,
+      $Res Function(_$GoHomeLocationEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoHomeLocationEventImpl implements _GoHomeLocationEvent {
+  const _$GoHomeLocationEventImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.goHomeLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GoHomeLocationEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String query) searchCity,
+    required TResult Function() goHomeLocation,
+  }) {
+    return goHomeLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(String query)? searchCity,
+    TResult? Function()? goHomeLocation,
+  }) {
+    return goHomeLocation?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String query)? searchCity,
+    TResult Function()? goHomeLocation,
+    required TResult orElse(),
+  }) {
+    if (goHomeLocation != null) {
+      return goHomeLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialEvent value) initial,
+    required TResult Function(_SearchCityEvent value) searchCity,
+    required TResult Function(_GoHomeLocationEvent value) goHomeLocation,
+  }) {
+    return goHomeLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InitialEvent value)? initial,
+    TResult? Function(_SearchCityEvent value)? searchCity,
+    TResult? Function(_GoHomeLocationEvent value)? goHomeLocation,
+  }) {
+    return goHomeLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialEvent value)? initial,
+    TResult Function(_SearchCityEvent value)? searchCity,
+    TResult Function(_GoHomeLocationEvent value)? goHomeLocation,
+    required TResult orElse(),
+  }) {
+    if (goHomeLocation != null) {
+      return goHomeLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoHomeLocationEvent implements HomeEvent {
+  const factory _GoHomeLocationEvent() = _$GoHomeLocationEventImpl;
 }
 
 /// @nodoc

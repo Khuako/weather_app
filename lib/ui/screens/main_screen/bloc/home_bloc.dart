@@ -16,6 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(const HomeState.loading()) {
     on<_InitialEvent>(_onInitialEvent);
     on<_SearchCityEvent>(_onSearchCity);
+    on<_GoHomeLocationEvent>(_onGoHome);
   }
 
   Position? curPosition;
@@ -108,6 +109,38 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     emit(const HomeState.loading());
+    try {
+      curPosition = await _determinePosition();
+      final res = await openWeatherService.getWeatherLocation(
+        curPosition?.latitude ?? 0,
+        curPosition?.longitude ?? 0,
+      );
+      final res1 = await openWeatherService.getFiveDays(
+        curPosition?.latitude ?? 0,
+        curPosition?.longitude ?? 0,
+      );
+      currentWeather = res;
+      if(res1 != null){
+        curWeatherForecast = res1;
+      }
+      emit(
+        HomeState.initial(mainWeather: res ?? WeatherModel(), weatherForecast: [
+          res1?[0],
+          res1?[7],
+          res1?[15],
+          res1?[23],
+          res1?[30],
+        ]),
+      );
+    } catch (e) {
+      emit(HomeState.info(message: e.toString()));
+    }
+  }
+  void _onGoHome(
+      _GoHomeLocationEvent event,
+      Emitter<HomeState> emit,
+      ) async {
+    emit(const HomeState.searchLoading());
     try {
       curPosition = await _determinePosition();
       final res = await openWeatherService.getWeatherLocation(
