@@ -111,6 +111,7 @@ Future<T?> showAppDialog<T>({
     builder: (context) => BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: AppDialog(
+        backgroundColor: Colors.transparent,
         margin: margin,
         padding: padding,
         maxWidth: maxWidth,
@@ -158,10 +159,10 @@ void showMessage({
   );
 }
 
-Widget getWeatherIcon(String icon) {
+Widget getWeatherIcon(String icon,) {
   switch (icon) {
     case '01d':
-      return Lottie.asset('assets/lottie/01d.json');
+      return Lottie.asset('assets/lottie/01d.json',);
     case '01n':
       return Lottie.asset('assets/lottie/01n.json');
     case '02d':

@@ -22,17 +22,36 @@ class TodayInformation extends StatefulWidget {
   State<TodayInformation> createState() => _TodayInformationState();
 }
 
-class _TodayInformationState extends State<TodayInformation> {
+class _TodayInformationState extends State<TodayInformation>
+    with SingleTickerProviderStateMixin {
   String? icon;
+  late final AnimationController _controller;
+  late final Animation<double> _sizeAnimation;
 
+  final double _originalSize = 150.0;
+  final double _scaledSize = 120.0;
   Timer? timer;
 
   @override
   void initState() {
     icon = widget.mainWeather.weather?.first.icon;
-
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+    _sizeAnimation = Tween<double>(begin: _originalSize, end: _scaledSize)
+        .animate(_controller);
     super.initState();
   }
+
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+
+
+
 
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
@@ -41,8 +60,60 @@ class _TodayInformationState extends State<TodayInformation> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Center(
-          child: getWeatherIcon(icon ?? ''),
+        GestureDetector(
+          onLongPressUp:() {
+            _controller.reverse();
+          },
+          onLongPress: () async{
+            _controller.forward();
+           await  showAppDialog(
+                context: context,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(
+                      15,
+                    ),
+                    elevation: 4,
+                    color: Colors.transparent,
+                    child: Container(
+                      padding: const EdgeInsets.all(
+                        20,
+                      ),
+                      margin: const EdgeInsets.all(
+                        20,
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                          color: Colors.transparent),
+                      child: Text(
+                        getRandomFact(),
+                        style: AppTextStyle.textStyle16w600,
+                      ),
+                    ),
+                  ),
+                )).then((value) {
+                  _controller.reverse();
+           });
+          },
+          onLongPressEnd: (details) {
+            _controller.reverse();
+          },
+
+          child: AnimatedBuilder(
+            animation: _sizeAnimation,
+            builder: (BuildContext context, Widget? child) {
+              return SizedBox(
+                height: _sizeAnimation.value,
+                width: _sizeAnimation.value,
+                child: Center(
+                  child: getWeatherIcon(icon ?? ''),
+                ),
+              );
+            },
+          ),
         ),
         const SizedBox(
           height: 30,

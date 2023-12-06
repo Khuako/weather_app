@@ -9,7 +9,6 @@ import 'package:weather/constants/constants.dart';
 import 'package:weather/models/weather_model.dart';
 import 'package:weather/ui/screens/main_screen/bloc/home_bloc.dart';
 import 'package:weather/ui/screens/main_screen/today_info.dart';
-import 'package:weather/ui/screens/widgets/weather_info.dart';
 import 'package:weather/ui/widgets/forecast_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
