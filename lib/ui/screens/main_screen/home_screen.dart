@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather/constants/app_text_style.dart';
 import 'package:weather/constants/constants.dart';
+import 'package:weather/constants/functions.dart';
 import 'package:weather/models/weather_model.dart';
 import 'package:weather/ui/screens/main_screen/bloc/home_bloc.dart';
 import 'package:weather/ui/screens/main_screen/today_info.dart';
@@ -52,10 +53,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Align(
               alignment: const AlignmentDirectional(3, -0.3),
               child: Container(
-                height: 300,
+    height: 300,
                 width: 300,
                 decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.deepPurple),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF83a4d4), // Пастельный синий
+                      Color(0xFFb6fbff), //
+                    ],
+                  ),
+                ),
               ),
             ),
             Align(
@@ -68,11 +77,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0, -1.2),
+              alignment: const AlignmentDirectional(0, -1),
               child: Container(
                 height: 300,
                 width: 600,
-                decoration: const BoxDecoration(color: Color(0xFFFFAB40)),
+                decoration:  BoxDecoration(color: Color(0xFFFFAB40), gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: getColors(widget.mainWeather?.main?.temp?.toInt() ?? 0),
+                ),),
               ),
             ),
             BackdropFilter(
